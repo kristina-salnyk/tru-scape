@@ -1,19 +1,21 @@
 import React from 'react';
-import Header from '@/app/components/header';
-import Toolbar from '@/app/components/toolbar';
-import AddCompanyButton from '@/app/components/add-company-button';
 import CompanyTable from '@/app/components/company-table';
-import SearchInput from '@/app/components/search-input';
+import CompanyRow from '@/app/components/company-row';
+import { CompanyStatus } from '@/lib/api';
 
 function Page() {
   return (
-    <>
-      <Header>Companies</Header>
-      <Toolbar action={<AddCompanyButton />}>
-        <SearchInput placeholder="Search companies" />
-      </Toolbar>
-      <CompanyTable />
-    </>
+    <CompanyTable>
+      <CompanyRow
+        id="1"
+        category="Products"
+        company="Costco"
+        status={CompanyStatus.Pending}
+        promotion={true}
+        country="USA"
+        joinedDate="02.19.2023"
+      />
+    </CompanyTable>
   );
 }
 
