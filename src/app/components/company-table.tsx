@@ -1,8 +1,6 @@
 'use client';
 
 import React from 'react';
-import CompanyRow from '@/app/components/company-row';
-import { CompanyStatus } from '@/lib/api';
 
 const headers = [
   'Category',
@@ -13,7 +11,11 @@ const headers = [
   'Joined date',
 ];
 
-export default function CompanyTable() {
+export interface CompanyTableProps {
+  children: React.ReactNode;
+}
+
+export default function CompanyTable({ children }: CompanyTableProps) {
   // const { data } = useQuery({
   //   queryKey: ['companies'],
   //   queryFn: () => getCompanies(),
@@ -32,24 +34,7 @@ export default function CompanyTable() {
             ))}
           </tr>
         </thead>
-        <tbody>
-          {[
-            {
-              id: '1',
-              title: 'EPAM',
-              description: 'The dynamic outsource company',
-              status: CompanyStatus.Active,
-              joinedDate: '2021-07-01',
-              hasPromotions: true,
-              categoryId: '1',
-              categoryTitle: 'Outsource',
-              countryId: '1',
-              countryTitle: 'Ukraine',
-            },
-          ].map((company) => (
-            <CompanyRow key={company.id} company={company} />
-          ))}
-        </tbody>
+        <tbody>{children}</tbody>
       </table>
     </div>
   );
