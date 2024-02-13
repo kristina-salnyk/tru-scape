@@ -208,6 +208,7 @@ export const getCompany = (id: string, init?: RequestInit) => {
     categoryTitle: 'Food',
     countryId: '1',
     countryTitle: 'USA',
+    avatar: '',
   };
   return Promise.resolve(company);
 };

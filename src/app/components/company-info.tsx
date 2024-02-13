@@ -3,31 +3,19 @@
 import React from 'react';
 import Image from 'next/image';
 import StatusLabel from '@/app/components/status-label';
-import { CompanyStatus } from '@/lib/api';
+import { getCompany } from '@/lib/api';
+import { useQuery } from '@tanstack/react-query';
 
 export interface CompanyInfoProps {
   companyId: string;
 }
 
 export default function CompanyInfo({ companyId }: CompanyInfoProps) {
-  const company = {
-    id: '2',
-    title: 'Nike',
-    description: 'Sportswear company',
-    status: CompanyStatus.Active,
-    joinedDate: '2021-02-01',
-    hasPromotions: true,
-    categoryId: '2',
-    categoryTitle: 'Clothing',
-    countryId: '1',
-    countryTitle: 'USA',
-    avatar: '',
-  };
-  // const { data: company } = useQuery({
-  //   queryKey: ['companies', companyId],
-  //   queryFn: () => getCompany(companyId),
-  //   staleTime: 10 * 1000,
-  // });
+  const { data: company } = useQuery({
+    queryKey: ['companies', companyId],
+    queryFn: () => getCompany(companyId),
+    staleTime: 10 * 1000,
+  });
 
   if (!company) return null;
   return (
